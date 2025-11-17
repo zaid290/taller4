@@ -89,7 +89,7 @@ int main() {
                 break;
 
             case 4:
-                printf("\nIngrese el tiempo disponible (horas): ");
+                printf("\nIngrese el tiempo disponible (dias): ");
                 scanf("%f", &tiempoDisponible);
                 printf("Ingrese los recursos disponibles: ");
                 scanf("%d", &recursosDisponibles);
@@ -97,9 +97,11 @@ int main() {
 
                 tiempoTotal = 0.0f;
                 recursosTotales = 0;
+                float tiempoHoras = 0;
                 for (i = 0; i < MAX_PRODUCTOS; i++) {
                     if (activos[i]) {
-                        tiempoTotal += tiempoFabricacion[i] * cantidadDemandada[i];
+                        tiempoHoras = tiempoFabricacion[i] * cantidadDemandada[i];
+                        tiempoTotal += tiempoHoras / 24.0f;
                         recursosTotales += recursosPorUnidad[i] * cantidadDemandada[i];
                     }
                 }
@@ -108,7 +110,7 @@ int main() {
                     printf("\n La fabrica PUEDE cumplir con la demanda.\n");
                 } else {
                     printf("\n La fabrica NO puede cumplir con la demanda.\n");
-                    printf("Tiempo requerido: %.2f / Disponible: %.2f\n", tiempoTotal, tiempoDisponible);
+                    printf("Tiempo requerido: %.2f dias / Disponible: %.2f dias\n", tiempoTotal, tiempoDisponible);
                     printf("Recursos requeridos: %d / Disponibles: %d\n", recursosTotales, recursosDisponibles);
                 }
                 break;
