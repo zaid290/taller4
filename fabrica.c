@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <string.h>
 
-
-
 int main() {
     int MAX_PRODUCTOS=5;
     int MAX_NOMBRE =30;
@@ -51,12 +49,27 @@ int main() {
                 fgets(nombres[idx], MAX_NOMBRE, stdin);
                 nombres[idx][strcspn(nombres[idx], "\n")] = '\0';
 
+                do{
                 printf("Tiempo de fabricacion por unidad (horas): ");
                 scanf("%f", &tiempoFabricacion[idx]);
+                if (tiempoFabricacion[idx] < 0){
+                    printf("solo ingrese numeros positivos\n");
+                }
+                }while (tiempoFabricacion[idx] < 0);
+                do{
                 printf("Recursos requeridos por unidad: ");
                 scanf("%d", &recursosPorUnidad[idx]);
+                if (recursosPorUnidad[idx] < 0){
+                    printf("solo ingrese numeros positivos\n");
+                }
+                }while (recursosPorUnidad[idx] < 0);
+                do{
                 printf("Cantidad: ");
                 scanf("%d", &cantidadDemandada[idx]);
+                if (cantidadDemandada[idx] < 0){
+                    printf("solo ingrese numeros positivos\n");
+                }
+                }while(cantidadDemandada[idx] < 0);
                 getchar(); // limpiar baffer
                 activos[idx] = 1;
                 printf("Producto agregado correctamente.\n");
@@ -89,10 +102,20 @@ int main() {
                 break;
 
             case 4:
+                do{
                 printf("\nIngrese el tiempo disponible (dias): ");
                 scanf("%f", &tiempoDisponible);
+                if (tiempoDisponible < 0){
+                    printf("solo ingrese numeros positivos\n");
+                }
+                }while(tiempoDisponible < 0);
+                do{
                 printf("Ingrese los recursos disponibles: ");
                 scanf("%d", &recursosDisponibles);
+                if (recursosDisponibles < 0){
+                    printf("solo ingrese numeros positivos\n");
+                }
+                }while(tiempoDisponible < 0);
                 getchar();
 
                 tiempoTotal = 0.0f;
